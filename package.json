@@ -1,8 +1,8 @@
 {
-  "name": "rayu",
+  "name": "* * *",
   "version": "1.0.0",
-  "description": "Rayu Mezcal Web",
-  "main": "index.js",
+  "description": "* * *",
+  "main": "app.js",
   "scripts": {
     "start": "gulp default",
     "build": "gulp build",

@@ -11,18 +11,18 @@
   "author": "Carlos Padilla",
   "license": "ISC",
   "devDependencies": {
-    "browser-sync": "^2.26.3",
-    "del": "^4.1.0",
-    "fs": "0.0.1-security",
-    "gulp": "^4.0.0",
-    "gulp-autoprefixer": "^6.0.0",
-    "gulp-concat": "^2.6.1",
-    "gulp-data": "^1.3.1",
-    "gulp-imagemin": "^5.0.3",
-    "gulp-notify": "^3.2.0",
-    "gulp-pug": "^4.0.1",
-    "gulp-sass": "^4.0.2",
-    "gulp-uglify": "^3.0.2",
-    "gulp-uglifycss": "^1.1.0"
+    "browser-sync": "*",
+    "del": "*",
+    "fs": "*",
+    "gulp": "*",
+    "gulp-autoprefixer": "*",
+    "gulp-concat": "*",
+    "gulp-data": "*",
+    "gulp-imagemin": "*",
+    "gulp-notify": "*",
+    "gulp-pug": "*",
+    "gulp-sass": "*",
+    "gulp-uglify": "*",
+    "gulp-uglifycss": "*"
   }
 }

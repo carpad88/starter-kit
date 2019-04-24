@@ -1,24 +1,37 @@
+/***************************************************
+********************* Packages *********************
+****************************************************/
+
 const { src, dest, watch, series } = require('gulp');
 
-const browserSync 	= require("browser-sync").create();
+// General
+const fs 			= require("fs");
 const notify 		= require("gulp-notify");
+const del 			= require("del");
+
+// Browser sync
+const browserSync 	= require("browser-sync").create();
+
+// Content
 const pug 			= require("gulp-pug");
 const data 			= require("gulp-data");
-const fs 			= require("fs");
+
+// Styles
 const sass 			= require("gulp-sass");
 const autoprefixer 	= require('gulp-autoprefixer');
 const uglifycss 	= require("gulp-uglifycss");
+
+// Scripts
 const concat 		= require("gulp-concat");
 const uglify 		= require("gulp-uglify");
+
+// Images
 const imageMin 		= require("gulp-imagemin");
-const del 			= require("del");
 
 
-/////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////
-// Development process
-/////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////
+/***************************************************
+************ Development process ******************
+****************************************************/
 
 // Compile Pug
 function compilePug(cb) {
@@ -35,7 +48,6 @@ function compilePug(cb) {
 		.pipe(dest("./src"))
 	cb();
 }
-
 
 // Compile Sass & Inject Into Browser
 function compileSass(cb) {
@@ -67,12 +79,9 @@ function serve(cb) {
 exports.default = series(help, compilePug, compileSass, serve);
 
 
-/////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////
-// This is the BUILD part it creates the dist folder and 
-// readys all the files for deployment
-/////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////
+/***************************************************
+******************* BUILD process ******************
+****************************************************/
 
 // Copy HTML to dist folder
 function copyHtml(cb) {
@@ -92,7 +101,7 @@ function copyCSS(cb) {
 	cb();
 }
 
-// ImageMin
+// Optimize images
 function imgMin(cb) {
 	return src(["src/assets/img/*"])
 		.pipe(imageMin())
@@ -113,11 +122,9 @@ function scripts(cb) {
 exports.build = series(imgMin, scripts, copyHtml, copyCSS);
 
 
-/////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////
-// Clean dist folder to make a new one updated
-/////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////
+/***************************************************
+******************* Utility taks ******************
+****************************************************/
 
 // Clean the build folder
 function clean(cb) {
@@ -128,24 +135,16 @@ function clean(cb) {
 
 exports.clean = clean;
 
-
-/////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////
 // Help interface to show in the terminal
-/////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////
-
 function help(cb) {
 	console.log("");
 	console.log("\t===== Help for Starter Kit =====");
 	console.log("\tUsage:\tgulp [command]\n");
 	console.log("\tThe commands are the following\n");
 	console.log("\t-------------------------------------------------------");
-	console.log("\tclean:\t\tRemoves all the compiled files on ./dist");
-	console.log("\tcopyCss:\tCopy the complied css files");
-	console.log("\tcopyHtml:\tCopy the Html files");
-	console.log("\timgMin:\t\tCopy the newer images to the build folder");
-	console.log("\tbuild:\t\tCreates the dist folder if not already create and copy all files in it");
+	console.log("\tdeafult:\t\tCompile pug and sass files and start a server");
+	console.log("\tbuild:\t\tCreates the dist folder and copy all production files");
+	console.log("\tclean:\t\tDelete the dist folder and the html");
 	console.log("\thelp:\t\tPrint this message");
 	console.log("\t-------------------------------------------------------\n");
 	console.log("");

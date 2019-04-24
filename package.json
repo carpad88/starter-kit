@@ -1,7 +1,7 @@
 {
-  "name": "* * *",
+  "name": "starter-kit",
   "version": "1.0.0",
-  "description": "* * *",
+  "description": "Kit for start an app",
   "main": "app.js",
   "scripts": {
     "start": "gulp default",
